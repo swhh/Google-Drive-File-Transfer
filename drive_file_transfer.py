@@ -80,7 +80,7 @@ def search_files(service, file_patterns, age_in_years=None, page_lim=10):
     if age_in_years:
         time_stamp = (datetime.now(timezone.utc) - timedelta(days=365 * age_in_years)).strftime('%Y-%m-%dT%H:%M:%S%z')
         query = '(' + query + ')'
-        query += f" and modifiedTime < '{time_stamp}'" # get files that were last accessed over age_in_years ago
+        query += f" and createdTime < '{time_stamp}'" # get files that were created over age_in_years ago
 
     for _ in range(page_lim):
       results = service.files().list(q=query, pageSize=1000, pageToken=page_token, fields="nextPageToken, files(id, name)").execute()

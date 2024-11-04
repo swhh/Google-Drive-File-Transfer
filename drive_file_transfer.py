@@ -144,7 +144,6 @@ def main(file_patterns, file_regex, age_in_years=None):
     files = search_files(service_user1, file_patterns, age_in_years=age_in_years) # get files from user1 account
     files = filter_files(files, file_regex) # filter files to match regex
     bulk_transfer_files(service_user1, service_user2, [file['id'] for file in files], batch_size=10) # share and copy files to user2 account
-    trash_files(service_user1, files)
   except Exception as e:
     print(f"An error occurred: {e}")
 
